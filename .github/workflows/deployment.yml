@@ -3,7 +3,7 @@ on:
   pull_request:
     types:
       - opened
-  workflow_dispatch:
+  workflow_dispatch: 
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -13,10 +13,14 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Install dependencies
+        working-directory: ./GitActionProject
         run: npm ci
       - name: Test code
+        working-directory: ./GitActionProject
         run: npm run test
       - name: Build code
+        working-directory: ./GitActionProject
         run: npm run build
       - name: Deploy project
+        working-directory: ./GitActionProject
         run: echo "Deploying..."
